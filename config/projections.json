@@ -1,0 +1,14 @@
+{
+  "Gemfile": {
+    "command": "gemfile"
+  }, 
+  "config/routes.rb": {
+    "command": "routes"
+  },
+  "config/projections.json": {
+    "command": "projections"
+  }, 
+  "spec/factories.rb": {
+    "command": "factories"
+  }
+}
