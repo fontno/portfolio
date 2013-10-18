@@ -31,6 +31,7 @@ gem 'bootstrap-sass'
 
 gem 'devise', '3.1.0'
 
+gem 'ffaker'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
