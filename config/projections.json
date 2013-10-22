@@ -10,5 +10,17 @@
   }, 
   "spec/factories.rb": {
     "command": "factories"
+  },
+  "lib/tasks/populate.rake": {
+    "command": "populate"
+  },
+  "spec/features/*.rb": {
+    "command": "rf"
+  },
+  "spec/models/*.rb": {
+    "command": "rm"
+  },
+  "spec/requests/*.rb": {
+    "command": "rr"
   }
 }

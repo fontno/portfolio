@@ -1,10 +1,17 @@
 <div class="row">
   <aside class="span4">
     <section>
-
-      <h1><%= @user.email %></h1>
+      <h1><%= @user.email %>
       <%= gravatar(@user) %>
-
+      </h1>
     </section>
   </aside>
+
+  <div class="span8">
+    <ol class="posts">
+      <% if @user.posts.any? %>
+        <%= render @posts %>
+      <% end %>
+    </ol>
+  </div>
 </div>

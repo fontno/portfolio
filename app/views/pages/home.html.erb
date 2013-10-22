@@ -1,1 +1,18 @@
-<%= link_to "Sign Up", new_user_registration_path %>
+<% if user_signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+      <%= render 'shared/user_info' %>
+      </section>
+      <section>
+      <%= render 'shared/post_form' %>
+      </section>
+    </aside>
+    <div class="span8">
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+
+<% else %>
+  <%= link_to "Sign Up", new_user_registration_path %>
+<% end %>

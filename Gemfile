@@ -33,17 +33,15 @@ gem 'devise', '3.1.0'
 
 gem 'ffaker'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
   gem 'pry'
   gem 'pry-rails'
   gem 'launchy'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :test do
