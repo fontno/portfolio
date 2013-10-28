@@ -8,6 +8,7 @@
   </span>
   <span class="timestamp">
     <%#= TODO should not need unless blank?  %>
-    <%= time_ago_in_words(feed_item.created_at) unless feed_item.created_at.blank? %>
+    <%#= time_ago_in_words(feed_item.created_at) unless feed_item.created_at.blank? %>
+    <%= feed_item.created_at %>
   </span>
 </li>

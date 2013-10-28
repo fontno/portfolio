@@ -3,6 +3,7 @@
     <%= post.text %>
   </span>
   <span class="timestamp">
-    <%= distance_of_time_in_words_to_now(post.created_at) %>
+    <%#= time_ago_in_words(post.created_at) %>
+    <%= post.created_at %>
   </span>
 </li>

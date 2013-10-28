@@ -1,0 +1,26 @@
+<div class="row">
+  <aside class="span4">
+    <section>
+      <%= gravatar(@user) %>
+      <h1><%= @user.email %></h1>
+    </section>
+    <section>
+      <%= render 'shared/relationships' %>
+      <% if @users.any? %>
+        <div class="user_gravatars">
+          <% @users.each do |user| %>
+            <%= link_to gravatar(user, size: 30), user %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  </aside>
+  <div class="span8">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users">
+        <%= render @users %>
+      </ul>
+    <% end %>
+  </div>
+</div>

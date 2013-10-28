@@ -10,6 +10,12 @@ describe User do
 
   it { should respond_to :posts }
   it { should respond_to :feed }
+  it { should respond_to :relationships }
+  it { should respond_to :followeds }
+  it { should respond_to :following? }
+  it { should respond_to :follow! }
+  it { should respond_to :reverse_relationships }
+  it { should respond_to :followers }
 
   describe "Post associations" do
 
@@ -37,6 +43,59 @@ describe User do
         expect(@user.feed).not_to include(unfollowed_post)
       end
     end
+  end
 
+  context "Following" do
+
+    describe "Follow!" do
+
+      let(:other_user) { FactoryGirl.create :user }
+
+      before do
+        @user.save
+        @user.follow!(other_user)
+      end
+
+      it "must follow the user" do
+        expect(@user).to be_following(other_user)
+      end
+
+      it "must incude the user in followeds" do
+        expect(@user.followeds).to include(other_user)
+      end
+    end
+
+    describe "Unfollow!" do
+      
+      let(:other_user) { FactoryGirl.create :user }
+
+      before do
+        @user.save
+        @user.follow!(other_user)
+        @user.unfollow!(other_user)
+      end
+
+      it "must not follow the user anymore" do
+        expect(@user).not_to be_following(other_user)
+      end
+
+      it "must not include the user in followeds" do
+        expect(@user.followeds).not_to include(other_user)
+      end
+    end
+
+    describe "Followeds" do
+      
+      let(:other_user) { FactoryGirl.create :user }
+
+      before do
+        @user.save
+        @user.follow!(other_user)
+      end
+
+      it "must include the user's followers" do
+        expect(other_user.followers).to include(@user)
+      end
+    end
   end
 end

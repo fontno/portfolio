@@ -4,8 +4,13 @@ Portfolio::Application.routes.draw do
   devise_scope :user do
     get '/signup' => 'devise/registrations#new'
   end
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :posts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
   root 'pages#home'
 
