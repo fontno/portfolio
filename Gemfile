@@ -33,6 +33,9 @@ gem 'devise', '3.1.0'
 
 gem 'ffaker'
 
+gem 'carrierwave', '0.9.0'
+gem 'rmagick'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
