@@ -14,13 +14,13 @@
   "lib/tasks/populate.rake": {
     "command": "populate"
   },
-  "spec/features/*_spec.rb": {
-    "command": "rfeature"
+  "spec/features/": {
+    "command": "rsfeature"
   },
-  "spec/models/*_spec.rb": {
-    "command": "rmodel"
+  "spec/models/": {
+    "command": "rsmodel"
   },
-  "spec/requests/*_spec.rb": {
-    "command": "rrequest"
+  "spec/requests/": {
+    "command": "rsrequest"
   }
 }

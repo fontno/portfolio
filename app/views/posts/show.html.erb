@@ -1,0 +1,13 @@
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1><%= @post.user.email %>
+          <%= gravatar(@post.user) %>
+      </h1>
+    </section>
+  </aside>
+  <div class="span8">
+    <%= image_tag @post.image.url.to_s %>
+    <%= @post.text %>
+  </div>
+</div>
