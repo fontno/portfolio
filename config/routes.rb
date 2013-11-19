@@ -1,14 +1,24 @@
 Portfolio::Application.routes.draw do
 
+  namespace :api do
+    namespace :v1 do
+      #match 'token/login' => 'authentication_tokens#authenticate', :via => :post
+      post 'token/login' => 'authentication_tokens#authenticate'
+      resources :posts
+    end
+  end
+
   devise_for :users
   devise_scope :user do
     get '/signup' => 'devise/registrations#new'
   end
+
   resources :users do
     member do
       get :following, :followers
     end
   end
+
   resources :posts, only: [:create, :show, :destroy]
   resources :relationships, only: [:create, :destroy]
 

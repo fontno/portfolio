@@ -2,8 +2,16 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :token_authenticatable
 
+  # callbacks
+  #
+  # TODO before save will fire on updates also
+  # before_save :ensure_authentication_token!
+  before_create :ensure_authentication_token!
+
+  # associations
   has_many :posts
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followeds, through: :relationships
@@ -27,5 +35,10 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy!
+  end
+
+  def authentication_token_expired?
+    # TODO stubbed
+    self.authentication_token.blank?
   end
 end
