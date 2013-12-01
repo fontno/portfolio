@@ -2,15 +2,11 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :token_authenticatable
+         :recoverable, :rememberable, :trackable, :validatable
 
   # callbacks
-  #
-  # TODO before save will fire on updates also
-  # before_save :ensure_authentication_token!
-  before_create :ensure_authentication_token!
-
+  before_save :ensure_authentication_token
+ 
   # associations
   has_many :posts
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -37,8 +33,18 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy!
   end
 
-  def authentication_token_expired?
-    # TODO stubbed
-    self.authentication_token.blank?
+ 
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
   end
+  
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
+    end
+  end
+
 end
