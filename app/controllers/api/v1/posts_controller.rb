@@ -8,4 +8,5 @@ class Api::V1::PostsController < Api::V1::ApiController
     respond_with({ posts: @posts })
   end
 
+  #TODO: request.header['Authorization']
 end

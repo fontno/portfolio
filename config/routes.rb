@@ -4,8 +4,9 @@ Portfolio::Application.routes.draw do
     namespace :v1 do
       #match 'token/login' => 'authentication_tokens#authenticate', :via => :post
       post 'token/login' => 'authentication_tokens#authenticate'
-      resources :posts
       resources :registrations, only: [:create, :delete]
+      resources :posts
+      resources :users
     end
   end
 

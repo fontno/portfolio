@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc2'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'
 
@@ -32,6 +29,8 @@ gem 'bootstrap-sass'
 gem 'devise', '3.1.0'
 
 gem 'ffaker'
+
+#gem 'json', '1.8.0'
 
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
