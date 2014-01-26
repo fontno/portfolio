@@ -1,3 +1,5 @@
+require "securerandom"
+
 # Be sure to restart your server when you modify this file.
 
 # Your secret key is used for verifying the integrity of signed cookies.
@@ -9,4 +11,16 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Portfolio::Application.config.secret_key_base = 'fadd52a1b8c31ad11f2f85ecd4c59300fe8c119e0d6a514c036c2daba1caff7cfc7d4a1a17a14ed9592e4eaf5a590e7660c501e27bdb18ff96ef8453744ba660'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    File.read(token_file).chomp
+  else
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    return token
+  end
+end
+
+Portfolio::Application.config.secret_key_base = secure_token
